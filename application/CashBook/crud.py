@@ -1,4 +1,4 @@
-from Data import models,schemas
+from application.Data import models,schemas
 from typing import *
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm import Session

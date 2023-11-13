@@ -1,11 +1,11 @@
 from typing import List, Union
 
 from fastapi import FastAPI, APIRouter,Depends
-from Data import models,database, schemas
-from Data.database import get_db
+from application.Data import models,database, schemas
+from application.Data.database import get_db
 router=APIRouter( prefix="/entries",tags=["entries"])
 from sqlalchemy.orm import Session
-from CashBook import crud
+from application.CashBook import crud
 
 
 @router.get("/")

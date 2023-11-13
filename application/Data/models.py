@@ -17,7 +17,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.types import Enum as SQLAlchemyEnum
 
 
-from Data.database import Base
+from application.Data.database import Base
 
 class CashbookEntry(Base):
     __tablename__ = "cashbook_entries"

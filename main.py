@@ -1,10 +1,11 @@
 from typing import Union
-
+from mangum import Mangum
 from fastapi import FastAPI
-from Data.database import  SessionLocal, engine, get_db
-from Data import database, models, schemas
-from CashBook import entries
+from application.Data.database import  SessionLocal, engine, get_db
+from application.Data import database, models, schemas
+from application.CashBook import entries
 from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -13,11 +14,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+handler = Mangum(app)
 
 database.Base.metadata.create_all(bind=engine)
 
 @app.get("/health")
 def read_root():
     return {"Hello": "World"}
+@app.get("/")
+def read_root():
+    return {"Hello": "Welcome to your GMM application"}
 
 app.include_router(entries.router)
