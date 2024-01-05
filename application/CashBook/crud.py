@@ -3,7 +3,7 @@ from typing import *
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm import Session
 
-
+from sqlalchemy import create_engine, Column, Float, func
 def createEntry(entry: schemas.CashbookEntryCreate, db: Session):
     # Create a new CashbookEntry instance
     new_entry = models.CashbookEntry(
@@ -45,3 +45,12 @@ def delete_entry_by_id(db:Session,id:str):
     except NoResultFound:
         raise Exception(f"Entry with id {id} not found")
     
+
+def total_amount(db:Session):
+        try:
+            total_amount = db.query(func.sum(models.CashbookEntry.amount)).scalar()
+
+            return  {"response":total_amount}
+        except Exception as e:
+            raise Exception(str(e))
+        
