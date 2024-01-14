@@ -50,7 +50,15 @@ def total_amount(db:Session):
         try:
             total_amount = db.query(func.sum(models.CashbookEntry.amount)).scalar()
 
-            return  {"response":total_amount}
+            return  total_amount
         except Exception as e:
             raise Exception(str(e))
+        
+def count(db:Session):
+        try:
+            count = db.query(func.count(models.CashbookEntry.amount)).scalar()
+
+            return  count
+        except Exception as e:
+            raise Exception(str(e))        
         

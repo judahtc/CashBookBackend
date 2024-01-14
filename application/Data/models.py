@@ -10,6 +10,7 @@ from sqlalchemy import (
     ForeignKey,
     Integer,
     String,
+    JSON
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -35,4 +36,10 @@ class CashbookEntry(Base):
     void=Column(String,default=False)
     void_date=Column(String,default=None)
 
+class Bills(Base):
+    __tablename__ = "bills"
+
+    id = Column(Integer, primary_key=True, index=True)
+    month = Column(String)
+    bills = Column(JSON)
 

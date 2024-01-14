@@ -32,9 +32,13 @@ def delete_entry(id:str,db: Session = Depends(get_db)):
     return crud.delete_entry_by_id(db=db,id=id)
 
 
-@router.get("/amount/sum")
+@router.get("/aggregation")
 def sum_of_amount(db:Session=Depends(get_db)):
-    return crud.total_amount(db=db)
+    sum= crud.total_amount(db=db)
+    count= crud.count(db=db)
+    avg=sum/count
+    avg=round(avg,2)
+    return {"sum":sum,"count":count,"avg":avg}
 
 
 

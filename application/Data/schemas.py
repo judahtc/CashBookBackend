@@ -2,14 +2,14 @@ from datetime import datetime
 from pydantic import BaseModel
 
 class CashbookEntryBase(BaseModel):
-    user_id: str
-    business_id: str
-    amount: float
-    rate: float
+    created_date: str
     payment_mode: str
     category: str
+    amount: float
+    rate: float
+   
     description: str
-    created_date: str
+   
 
     class Config:
         orm_mode = True
@@ -26,7 +26,13 @@ class CashbookEntryCreate(BaseModel):
 
 
 class CashbookEntry(CashbookEntryBase):
-    id: int
+
 
     class Config:
         orm_mode = True
+from typing import Dict
+
+
+class BillRecordCreate(BaseModel):
+    month: str
+    bills: Dict[str, float]

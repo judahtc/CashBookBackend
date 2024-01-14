@@ -13,3 +13,4 @@ phases:
   post_build:
     commands:
       - echo "Updating lambda Function..."
+      - aws lambda update-function-code --function-name  $FUNCTION_NAME --image-uri $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
