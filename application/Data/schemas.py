@@ -36,3 +36,7 @@ from typing import Dict
 class BillRecordCreate(BaseModel):
     month: str
     bills: Dict[str, float]
+
+
+class BillAdd(BaseModel):
+    bills: Dict[str, float]
